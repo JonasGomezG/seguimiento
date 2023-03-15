@@ -2,6 +2,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 main{
     width: 500px;
@@ -13,17 +14,18 @@ main{
     align-items: center;
     flex-wrap: wrap;
 }
-
 .card{
     width: 48px;
     height: 48px;
     border: 1px solid blue;
+    background-color: black;
 }
-
 .objetivo{
     background-color: green;
 }
-
-.actual{
+.jugador1{
     background-color: orange;
+}
+.jugador2{
+    background-color: purple;
 }

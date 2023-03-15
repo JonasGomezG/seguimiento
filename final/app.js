@@ -1,87 +1,84 @@
-/**
- * addEventListener('evento', funcion);
- * 
- * El metodo addEventListener relaciona la aparicion de un evento con la ejecucion de una funcion.
- * 
- * Este metodo se aplica sobre un elemento de HTML.
- * 
- * Sustituye al element.setAttribute('evento', 'funcion')
- * 
- * EVENTO LOAD
- * Evento que hace referencia a cuando la pagina web carga completamente.
- * NO AFECTA SOBRE OTROS ELEMENTOS QUE NO SEAN BODY
- * 
- */
-// Localizo etiqueta main
+/*
+    1. mover casillas
+    2. que hago con los limites
+    3. colision entre los 2 jugadores
+    4. que hago cuando gano
+    5. boton reinicio de nueva funcion de inicio
+    6. contadores con la puntuacion de cada usuario
+    7. eliminar evento de teclado cuando hay un ganador
+    8. css bien
+    9. opcional, contador de tiempo para que empieze el juego
+    10. no errores en la consola
+*/
+
+
 let main = document.getElementsByTagName('main')[0];
 let body = document.getElementsByTagName('body')[0];
+let input = document.createElement('input');
+input.setAttribute('keydown', 'mover()');
+
+let posicionObjetivo = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];   
+let posicionJugador1 = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
+let posicionJugador2 = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
 
 body.addEventListener('load', pintarTablero());
 
-
 function pintarTablero(){
-    let posicionObjetivo = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
-    let posicionInicio = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
-
-    // console.log('has hecho un click')
-
     for (let i = 0 ; i < 10; i ++){
         for (let j = 0 ; j < 10; j ++){
             let div = document.createElement('div');
             div.classList.add('card');
+            div.classList.add(i + 'f');
+            div.classList.add(j + 'c');
             main.appendChild(div);
-            /**
-             * Asigno la fila y la columna como clase en mi div
-             */
-            div.classList.add(i+'f');
-            div.classList.add(j+'c');
-            /**
-             * Para pintar una casilla, le damos color de fondo
-             */
-            if(i == posicionObjetivo[0] && j == posicionObjetivo[1]){
-                div.classList.add('objetivo');
-                console.log(div.classList);
-                console.log('Estamos en la fila: ' + parseInt(div.classList[1]));
-                console.log('Estamos en la columna: ' + parseInt(div.classList[2]));
-            }
-            if(i == posicionInicio[0] && j == posicionInicio[1]){
-                div.classList.add('actual');
-                console.log(div.classList);
-                console.log('Estamos en la fila: ' + parseInt(div.classList[1]));
-                console.log('Estamos en la columna: ' + parseInt(div.classList[2]));
-            }
         }
     }
+    pintarFichas();
 }
 
-/**
- * Necesito cualquier evento de tecla para poder mover el color de la casilla
- * -    DONDE:                              El evento lo aplico sobre todo el documento HTML (uso document.) 
- * -    EVENTO:                             El evento elegido es 'keydown'.
- * -    FUNCION EJECUTADA:                  La funcion elegida es 'mover'.
- * -    RELACION EVENTO, FUNCION Y LUGAR:   El metodo elegido es addEventListener
- * 
-*/
+function pintarFichas(){
+
+    objetivo = document.getElementsByClassName(`card ${posicionObjetivo[0]}f ${posicionObjetivo[1]}c`)[0];
+    objetivo.classList.add('objetivo');
+    jugador1 = document.getElementsByClassName(`card ${posicionJugador1[0]}f ${posicionJugador1[1]}c`)[0];
+    jugador1.classList.add('jugador1');
+    jugador2 = document.getElementsByClassName(`card ${posicionJugador2[0]}f ${posicionJugador2[1]}c`)[0];
+    jugador2.classList.add('jugador2');
+
+}
+
 document.addEventListener('keydown', mover);
 
-/**
- * Esta funcion mover recibe por parametro objeto event que referencia a la clase KeyboardEvent
- */
 function mover(event){
     switch (event['key']) {
-        case 'ArrowUp':
-            posicionInicio[0] - 1;
-            break;
-        case 'ArrowDown':
-            console.log('has pulsado la tecla hacia abajo')
+        // Jugador 1 (flechas)
+        case 'ArrowUp': // arriba
+        parseInt(jugador1.classList[1]) - 1;
+        objetivo.removeClass
         break;
-        case 'ArrowLeft':
-            console.log('has pulsado la tecla hacia izquierda')
-            break;
-        case 'ArrowRight':
-            console.log('has pulsado la tecla hacia derecha')
+        case 'ArrowDown': // abajo
+            
         break;
-    
+        case 'ArrowLeft': // izquierda
+            
+            break;
+        case 'ArrowRight': // derecha
+            
+        break;
+
+        // Jugador 2 (W S A D)
+        case 'w': // arriba
+            
+        break;
+        case 's': // abajo
+            
+        break;
+        case 'a': // izquierda
+            
+        break;
+        case 'd': // derecha
+            
+            break;
         default:
             break;
     }
