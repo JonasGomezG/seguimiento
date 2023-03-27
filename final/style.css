@@ -26,10 +26,10 @@ main{
     background-color: green;
 }
 .jugador1{
-    background-color: purple;
+    background-color: yellow;
 }
 .jugador2{
-    background-color: yellow;
+    background-color: purple;
 }
 .parteJ1{
     height: 100px;

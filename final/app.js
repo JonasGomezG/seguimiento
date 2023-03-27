@@ -72,16 +72,42 @@ function pintarFichas(){
 
 }
 
+function reiniciar(){
+    jugador1.classList.remove('jugador1');
+    jugador2.classList.remove('jugador2');
+    objetivo.classList.remove('objetivo');
+    pintarFichas();
+}
+
 function reinicioCompleto(){
+    alert('Juego reiniciado');
     jugador1.classList.remove('jugador1');
     jugador2.classList.remove('jugador2');
     objetivo.classList.remove('objetivo');
     pintarFichas();
     contadorJ1 = 0;
     contadorJ2 = 0;
+    contador_J1.textContent = `Victorias: ${contadorJ1}`;
+    contador_J2.textContent = `Victorias: ${contadorJ2}`;
+    
 }
 
 document.addEventListener('keydown', mover);
+
+function verGanador(){
+    if(posicionJugador1[0] == posicionObjetivo[0] && posicionJugador1[1] == posicionObjetivo[1]){
+        contadorJ2++;
+        contador_J2.textContent = `Victorias: ${contadorJ2}`;
+        alert(`Ha ganado ${nombre2}`);
+        reiniciar();
+    }
+    if(posicionJugador2[0] == posicionObjetivo[0] && posicionJugador2[1] == posicionObjetivo[1]){
+        contadorJ1++;
+        contador_J1.textContent = `Victorias: ${contadorJ1}`;
+        alert(`Ha ganado ${nombre1}`);
+        reiniciar();
+    }
+}
 
 function mover(event){
     switch (event['key']) {
@@ -94,11 +120,7 @@ function mover(event){
         }
         jugador1 = document.getElementsByClassName(`card ${posicionJugador1[0]}f ${posicionJugador1[1]}c`)[0];
         jugador1.classList.add('jugador1');
-        if(jugador1.classList.contains('jugador1') && jugador1.classList.contains('objetivo')){
-            contadorJ1++;
-        }
-        
-        console.log(contadorJ1);
+        verGanador();
         break;
         case 'ArrowDown': // abajo
         jugador1.classList.remove('jugador1');
@@ -108,6 +130,7 @@ function mover(event){
         }
         jugador1 = document.getElementsByClassName(`card ${posicionJugador1[0]}f ${posicionJugador1[1]}c`)[0];
         jugador1.classList.add('jugador1');
+        verGanador();
         break;
         case 'ArrowLeft': // izquierda
         jugador1.classList.remove('jugador1');
@@ -116,7 +139,8 @@ function mover(event){
             posicionJugador1[1] = 14;
         }
         jugador1 = document.getElementsByClassName(`card ${posicionJugador1[0]}f ${posicionJugador1[1]}c`)[0];
-        jugador1.classList.add('jugador1');    
+        jugador1.classList.add('jugador1');  
+        verGanador();  
         break;
         case 'ArrowRight': // derecha
         jugador1.classList.remove('jugador1');
@@ -125,7 +149,8 @@ function mover(event){
             posicionJugador1[1] = 0;
         }
         jugador1 = document.getElementsByClassName(`card ${posicionJugador1[0]}f ${posicionJugador1[1]}c`)[0];
-        jugador1.classList.add('jugador1');    
+        jugador1.classList.add('jugador1');   
+        verGanador(); 
         break;
 
         // Jugador 2 (W S A D)
@@ -137,6 +162,7 @@ function mover(event){
         }
         jugador2 = document.getElementsByClassName(`card ${posicionJugador2[0]}f ${posicionJugador2[1]}c`)[0];
         jugador2.classList.add('jugador2');
+        verGanador();
         break;
         case 's': // abajo
         jugador2.classList.remove('jugador2');
@@ -145,7 +171,8 @@ function mover(event){
             posicionJugador2[0] = 0;
         }
         jugador2 = document.getElementsByClassName(`card ${posicionJugador2[0]}f ${posicionJugador2[1]}c`)[0];
-        jugador2.classList.add('jugador2');    
+        jugador2.classList.add('jugador2'); 
+        verGanador();   
         break;
         case 'a': // izquierda
         jugador2.classList.remove('jugador2');
@@ -154,7 +181,8 @@ function mover(event){
             posicionJugador2[1] = 14;
         }
         jugador2 = document.getElementsByClassName(`card ${posicionJugador2[0]}f ${posicionJugador2[1]}c`)[0];
-        jugador2.classList.add('jugador2');    
+        jugador2.classList.add('jugador2');   
+        verGanador(); 
         break;
         case 'd': // derecha
         jugador2.classList.remove('jugador2');
@@ -163,7 +191,8 @@ function mover(event){
             posicionJugador2[1] = 0;
         }
         jugador2 = document.getElementsByClassName(`card ${posicionJugador2[0]}f ${posicionJugador2[1]}c`)[0];
-        jugador2.classList.add('jugador2');     
+        jugador2.classList.add('jugador2');    
+        verGanador(); 
         break;
         default:
             break;
