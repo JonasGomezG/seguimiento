@@ -1,2 +1,2 @@
 # seguimiento
-Progrmama multijugador que trabaja sobre HTML, CSS y JS con eventos
+Programa multijugador que trabaja sobre HTML, CSS y JS con eventos
